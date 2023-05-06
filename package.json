@@ -1,0 +1,22 @@
+{
+  "name": "auc_dahab_wallet",
+  "version": "1.0.0",
+  "description": "This is a full-featured crypto-wallet created by AUC students that helps developers to interact with the wallet through the cli or node code in their apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinawy/auc_dahab_wallet.git"
+  },
+  "author": "maco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shinawy/auc_dahab_wallet/issues"
+  },
+  "homepage": "https://github.com/shinawy/auc_dahab_wallet#readme",
+  "dependencies": {
+    "npm-packlist": "^7.0.4"
+  }
+}
