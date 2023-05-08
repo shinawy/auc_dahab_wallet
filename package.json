@@ -2,14 +2,15 @@
   "name": "auc_dahab_wallet",
   "version": "1.0.0",
   "description": "This is a full-featured crypto-wallet created by AUC students that helps developers to interact with the wallet through the cli or node code in their apps",
-  "main": "./src/index.js",
+  "main": "./src/index",
+  "typings": "lib/cjs/types",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
     "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,12 @@
   },
   "homepage": "https://github.com/shinawy/auc_dahab_wallet#readme",
   "dependencies": {
+    "@types/node": "^20.1.0",
     "npm-packlist": "^7.0.4"
-  }, 
-  "files": ["./lib/**/*"], 
+  },
+  "files": [
+    "./lib/**/*"
+  ],
   "exports": {
     ".": {
       "import": {
@@ -36,7 +40,13 @@
         "default": "./lib/cjs/index.js"
       }
     }
-  }, 
-  "types": "./lib/cjs/types/index.d.ts"
-  
+  },
+  "types": "./lib/cjs/types/index.d.ts",
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1"
+  }
 }
