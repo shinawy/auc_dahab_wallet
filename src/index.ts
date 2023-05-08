@@ -1,7 +1,7 @@
 //index.js
 
 export function helloNpm() {
-    return "hello Npm"
+    return "hello NPM"
 }
   
 // module.exports = helloNpm
