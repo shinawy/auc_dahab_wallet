@@ -5,7 +5,7 @@ import  {helloNpm} from '../src/index';
 
 
 
-describe('Hello World Function', () => {
+describe('Hello NPM Function', () => {
   it('should be a function', () => {
     assert.isFunction(helloNpm);
   });
