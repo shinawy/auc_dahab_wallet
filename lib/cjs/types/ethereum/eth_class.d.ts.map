@@ -1,0 +1,1 @@
+{"version":3,"file":"eth_class.d.ts","sourceRoot":"","sources":["../../../../src/ethereum/eth_class.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,MAAM,EAAE,MAAM,QAAQ,CAAA;AAK/B,qBAAa,GAAG;;IAMX,aAAa,CAAE,eAAe,EAAE,MAAM;IAOjC,WAAW,CAAC,SAAS,EAAE,MAAM;IAO5B,gBAAgB,CAAC,eAAe,EAAE,MAAM,EAAE,gBAAgB,EAAE,MAAM,EAAE,MAAM,EAAE,MAAM;CAkB5F"}

@@ -1,8 +1,8 @@
 import 'mocha';
 import { assert } from 'chai';
 
-import  {Eth} from '../src/ethereum/eth_class';
 
+import  {Eth} from '../src/index';
 
 let eth_cls= new Eth()
 
