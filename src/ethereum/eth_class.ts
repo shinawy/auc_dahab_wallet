@@ -10,21 +10,21 @@ export class Eth{
         
     }
 
-     create_wallet (master_mnemonic)  {
+     create_wallet (master_mnemonic: string)  {
         const wallet = ethers.Wallet.fromMnemonic(master_mnemonic);
         const privateKey = wallet._signingKey().privateKey;
         const publicKey = wallet.address;
         return [privateKey, publicKey];
         
     }
-    async get_balance(publicKey) {
+    async get_balance(publicKey: string) {
         const provider = ethers.providers.getDefaultProvider("goerli")
         const balance = await provider.getBalance(publicKey);
     
         return ethers.utils.formatEther(balance);
     }
     
-    async  ethSendTransaction(sender_priv_key, receiver_pub_key, amount) {
+    async  send_transaction(sender_priv_key: string, receiver_pub_key: string, amount: string) {
         let provider = ethers.providers.getDefaultProvider("goerli")
         let walletPrivKey = new ethers.Wallet(sender_priv_key)
       

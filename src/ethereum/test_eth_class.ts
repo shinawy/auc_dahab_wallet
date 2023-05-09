@@ -21,7 +21,7 @@ async function main(){
     let balance= await eth_cls.get_balance(publicKey)
     console.log (`balance: ${balance}`)
 
-    let result= await eth_cls.ethSendTransaction(privateKey, publicKey, "0.0005")
+    let result= await eth_cls.send_transaction(privateKey, publicKey, "0.0005")
     console.log (`result: ${result}`)
 
 }
