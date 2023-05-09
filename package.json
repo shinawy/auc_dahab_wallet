@@ -24,10 +24,10 @@
   "homepage": "https://github.com/shinawy/auc_dahab_wallet#readme",
   "dependencies": {
     "@types/node": "^20.1.0",
-    "typescript": "^5.0.4",
     "bip39": "^3.1.0",
     "ethers": "^5.7.1",
-    "npm-packlist": "^7.0.4"
+    "npm-packlist": "^7.0.4",
+    "typescript": "^5.0.4"
   },
   "files": [
     "./lib/**/*"
@@ -50,6 +50,6 @@
     "@types/mocha": "^10.0.1",
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^9.1.1"
   }
 }
