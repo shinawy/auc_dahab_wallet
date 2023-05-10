@@ -13,7 +13,6 @@
     "prepack": "npm run build",
     "test": "ts-mocha -p configs/tsconfig.base.json",
     "mocha": "mocha",
-    "jest": "jest --config=.jestconfig.json", 
     "tsjest": "ts-jest config:migrate .jestconfig.json"
   },
   "repository": {
