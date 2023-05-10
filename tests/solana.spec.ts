@@ -2,8 +2,8 @@
 
 import {describe, expect, test} from '@jest/globals';
 
-import  {Sol} from '../../src/index';
-import {create_seed} from "../../src/create_seed"
+import  {Sol} from '../src/index';
+import {create_seed} from "../src/create_seed"
 
 let sol_cls= new Sol()
 
@@ -62,19 +62,3 @@ describe('Solana send transcation Function', () => {
     });
     
 });
-
-
-
-//   describe('Solana send transcation Function', () => {
-//     it('should be a function', () => {
-//       assert.isFunction(sol_cls.send_transaction);
-//     });
-  
-//     it('should return the result json in case of success and error in case it failed', async () => {
-      
-
-        
-        
-  
-//     });
-//   });
