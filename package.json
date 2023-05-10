@@ -11,7 +11,10 @@
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "jest": "jest --config=.jestconfig.json",
     "prepack": "npm run build",
-    "test": "mocha"
+    "test": "ts-mocha -p configs/tsconfig.base.json",
+    "mocha": "mocha",
+    "jest": "jest --config=.jestconfig.json", 
+    "tsjest": "ts-jest config:migrate .jestconfig.json"
   },
   "repository": {
     "type": "git",
@@ -24,12 +27,15 @@
   },
   "homepage": "https://github.com/shinawy/auc_dahab_wallet#readme",
   "dependencies": {
+    "@solana/web3.js": "^1.76.0",
     "@types/node": "^20.1.0",
     "bip39": "^3.1.0",
+    "esm": "^3.2.25",
     "ethers": "^5.7.1",
     "jest": "^29.5.0",
     "npm-packlist": "^7.0.4",
     "ts-jest": "^29.1.0",
+    "ts-mocha": "^10.0.0",
     "typescript": "^5.0.4"
   },
   "files": [
@@ -54,5 +60,12 @@
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
     "ts-node": "^9.1.1"
+  },
+  "mocha": {
+    "require": [
+      "ts-node/register",
+      "esm"
+    ],
+    "recursive": true
   }
 }
