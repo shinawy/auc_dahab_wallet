@@ -11,9 +11,9 @@
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "jest": "jest --config=.jestconfig.json",
     "prepack": "npm run build",
-    "test": "ts-mocha -p configs/tsconfig.base.json",
+    "ts-mocha": "ts-mocha -p configs/tsconfig.base.json",
     "mocha": "mocha",
-    "jest": "jest --config=.jestconfig.json", 
+    "test": "jest --config=.jestconfig.json", 
     "tsjest": "ts-jest config:migrate .jestconfig.json"
   },
   "repository": {
