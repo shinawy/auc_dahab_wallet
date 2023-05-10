@@ -15,11 +15,14 @@ export class Cspr{
     }
 
     async create_wallet(master_seed: Uint8Array) {
+        
         const client = new CasperClient(CONNECTION.NODE_ADDRESS);
-        const edKeyPair = client.newHdWallet(master_seed);
-    
+        const edKeyPair =  client.newHdWallet(master_seed);
+        
         const publicKey = Buffer.from(edKeyPair.publicKey()).toString('hex');
         const privateKey = edKeyPair.privateKey();
+        
+
         return [privateKey, publicKey];
         
     }
