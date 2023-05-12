@@ -2,7 +2,7 @@
 
 import {describe, expect, test} from '@jest/globals';
 
-import  {Sol} from '../src/index';
+import  {Sol} from '../src/solana/sol_class';
 import {create_seed} from "../src/create_seed"
 
 let sol_cls= new Sol()

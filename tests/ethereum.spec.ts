@@ -1,7 +1,7 @@
 
 
 
-import  {Eth} from '../src/index';
+import  {Eth} from '../src/ethereum/eth_class';
 
 
 
