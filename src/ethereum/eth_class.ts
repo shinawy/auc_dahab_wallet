@@ -12,8 +12,8 @@ export class Eth{
 
      create_wallet (master_mnemonic: string)  {
         const wallet = ethers.Wallet.fromMnemonic(master_mnemonic);
-        const privateKey = wallet._signingKey().privateKey;
-        const publicKey = wallet.address;
+        const privateKey = wallet._signingKey().privateKey.toString();
+        const publicKey = wallet.address.toString();
         return [privateKey, publicKey];
         
     }
