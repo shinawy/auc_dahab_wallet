@@ -1,5 +1,5 @@
 {
-    "roots": ["tests/global"],
+    "roots": ["tests"],
     "preset": "ts-jest", 
     "testTimeout": 10000000
 }
