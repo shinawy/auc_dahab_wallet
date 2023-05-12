@@ -1,5 +1,5 @@
 {
-    "roots": ["tests"],
+    "roots": ["tests/solana"],
     "preset": "ts-jest", 
     "testTimeout": 10000000
 }

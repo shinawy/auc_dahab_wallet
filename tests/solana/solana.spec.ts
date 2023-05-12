@@ -2,8 +2,8 @@
 
 import {describe, expect, test} from '@jest/globals';
 
-import  {Sol} from '../src/solana/sol_class';
-import {create_seed} from "../src/create_seed"
+import  {Sol} from '../../src/solana/sol_class';
+import {create_seed} from "../../src/create_seed"
 
 let sol_cls= new Sol()
 
@@ -20,6 +20,7 @@ describe('Solana Create Wallet Function', () => {
         const expected_privateKey = '9e1fd8e04304ab017d188bdebf434a9cd0248222c438f68ed83c445e4456fea34c81a87a5ed781aa00cf34165a829b3e123b202743ff5f596292b87a3e217b46';
         const expected_publicKey = '69ef1WyEHve8mbAFzZKZ2dENuEiVAzrbvqL2fFop3qmF';
 
+        
         expect(privateKey).toBe(expected_privateKey);
         expect(publicKey).toBe(expected_publicKey);
 
@@ -54,9 +55,10 @@ describe('Solana send transcation Function', () => {
         let privateKey = '9e1fd8e04304ab017d188bdebf434a9cd0248222c438f68ed83c445e4456fea34c81a87a5ed781aa00cf34165a829b3e123b202743ff5f596292b87a3e217b46';
         let publicKey = '69ef1WyEHve8mbAFzZKZ2dENuEiVAzrbvqL2fFop3qmF';
         
-        
+        // let result= await sol_cls.send_transaction(privateKey, publicKey, "0.001")
+        // console.log ( `result: ${result}`)
         // not sufficient balance
-        expect(async () => {await sol_cls.send_transaction(privateKey, publicKey, "0.001")}).rejects.toThrow(Error);
+        expect(async () => {await sol_cls.send_transaction(privateKey, publicKey, "0.001")}).toThrow(Error);
         
 
     });
