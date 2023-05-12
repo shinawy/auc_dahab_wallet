@@ -19,8 +19,9 @@ export class Cspr{
         const client = new CasperClient(CONNECTION.NODE_ADDRESS);
         const edKeyPair =  client.newHdWallet(master_seed);
         
+        const privateKey = Buffer.from(edKeyPair.privateKey()).toString('hex');
         const publicKey = Buffer.from(edKeyPair.publicKey()).toString('hex');
-        const privateKey = edKeyPair.privateKey();
+        
         
 
         return [privateKey, publicKey];
@@ -28,7 +29,14 @@ export class Cspr{
     }
      
     async get_balance(publicKey: string) {
-        let balance = await getAccountBalance(publicKey);
+        let balance
+        try{
+         balance = await getAccountBalance(publicKey);
+        }
+        catch(e){
+            console.log ("function cspr.get_balance() returned with error: ", e)
+            balance= 0.0
+        }
         return balance;
     }
     

@@ -13,7 +13,7 @@
     "prepack": "npm run build",
     "ts-mocha": "ts-mocha -p configs/tsconfig.base.json",
     "mocha": "mocha",
-    "test": "jest --config=.jestconfig.json",
+    "test": "export NODE_OPTIONS=--openssl-legacy-provider && jest --config=.jestconfig.json",
     "tsjest": "ts-jest config:migrate .jestconfig.json"
   },
   "repository": {

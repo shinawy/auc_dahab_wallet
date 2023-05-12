@@ -2,8 +2,8 @@
 
 import {describe, expect, test} from '@jest/globals';
 
-import  {Cspr} from '../../src/casper/cspr_class';
-import {create_seed} from "../../src/create_seed"
+import  {Cspr} from '../src/casper/cspr_class';
+import {create_seed} from "../src/create_seed"
 
 let cspr_cls= new Cspr()
 
@@ -17,8 +17,8 @@ describe('Casper Create Wallet Function', () => {
         let keys= await cspr_cls.create_wallet(my_seed);
         let privateKey= keys[0], publicKey=keys[1];
 
-        const expected_privateKey = '9e1fd8e04304ab017d188bdebf434a9cd0248222c438f68ed83c445e4456fea34c81a87a5ed781aa00cf34165a829b3e123b202743ff5f596292b87a3e217b46';
-        const expected_publicKey = '69ef1WyEHve8mbAFzZKZ2dENuEiVAzrbvqL2fFop3qmF';
+        const expected_privateKey = '5dbcbfe0b4174540462d318fcced6b1764b3d85d4ef8b28148bdea015bc1f184';
+        const expected_publicKey = '03dfd147cf1b317d08aac2f0448a63cf8038ffdd8b6fa7063617dcb35cdde1c08c';
 
         expect(privateKey).toBe(expected_privateKey);
 
@@ -36,7 +36,7 @@ describe('Casper Get Balance Function', () => {
     
     test('should return the balance for the account with certain publicKey', async () => {
 
-        let publicKey="69ef1WyEHve8mbAFzZKZ2dENuEiVAzrbvqL2fFop3qmF"
+        let publicKey="03dfd147cf1b317d08aac2f0448a63cf8038ffdd8b6fa7063617dcb35cdde1c08c"
         let balance= await cspr_cls.get_balance(publicKey)
         const expected_balance = 0.0;
     
@@ -52,8 +52,8 @@ describe('Casper send transcation Function', () => {
 
     test('should return the result json in case of success and error in case it failed', async () => {
 
-        let privateKey = '9e1fd8e04304ab017d188bdebf434a9cd0248222c438f68ed83c445e4456fea34c81a87a5ed781aa00cf34165a829b3e123b202743ff5f596292b87a3e217b46';
-        let publicKey = '69ef1WyEHve8mbAFzZKZ2dENuEiVAzrbvqL2fFop3qmF';
+        let privateKey = '5dbcbfe0b4174540462d318fcced6b1764b3d85d4ef8b28148bdea015bc1f184';
+        let publicKey = '03dfd147cf1b317d08aac2f0448a63cf8038ffdd8b6fa7063617dcb35cdde1c08c';
         
         
         // not sufficient balance
