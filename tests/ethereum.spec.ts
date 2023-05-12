@@ -41,7 +41,7 @@ describe('Ethereum Get Balance Function', () => {
       
       let publicKey="0xb75B0315feDb4A111D686A07a5F55b252bDD8868"
       let balance= await eth_cls.get_balance(publicKey)
-      const expected_balance = '0.0';
+      const expected_balance = 0.0;
         
     
         expect(balance).toBe(expected_balance);

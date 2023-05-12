@@ -21,7 +21,7 @@ export class Eth{
         const provider = ethers.providers.getDefaultProvider("goerli")
         const balance = await provider.getBalance(publicKey);
     
-        return ethers.utils.formatEther(balance);
+        return parseFloat(ethers.utils.formatEther(balance));
     }
     
     async  send_transaction(sender_priv_key: string, receiver_pub_key: string, amount: string) {
