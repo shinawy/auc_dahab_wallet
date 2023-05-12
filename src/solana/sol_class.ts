@@ -20,6 +20,8 @@ export class Sol{
      create_wallet (master_seed: Uint8Array)  {
         let keypair = solanaWeb3.Keypair.fromSeed(master_seed);
         let privateKey = Buffer.from(keypair.secretKey).toString('hex');
+        
+
         let publicKey = keypair.publicKey.toString();
         return [privateKey, publicKey];
         
@@ -41,11 +43,13 @@ export class Sol{
     
     async  send_transaction(sender_priv_key: string, receiver_pub_key: string, amount: string) {
 
+        
         const connection = new Connection('https://api.testnet.solana.com');
         const toPublicKey = new PublicKey(receiver_pub_key);
 
+        
         let fromKeypair = Keypair.fromSecretKey(
-            Uint8Array.from(sender_priv_key.split(",").map(Number))
+            Uint8Array.from(Buffer.from(sender_priv_key,'hex'))
         );
 
         let transaction = new Transaction();
@@ -58,8 +62,8 @@ export class Sol{
         );
         //TODO: should add await here 
         sendAndConfirmTransaction(connection, transaction, [fromKeypair]);
-
-      }
+        
+    }
 
 
 
