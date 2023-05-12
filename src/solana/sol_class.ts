@@ -43,10 +43,11 @@ export class Sol{
     
     async  send_transaction(sender_priv_key: string, receiver_pub_key: string, amount: string) {
 
+        
         const connection = new Connection('https://api.testnet.solana.com');
         const toPublicKey = new PublicKey(receiver_pub_key);
 
-        let enc= new TextEncoder()
+        
         let fromKeypair = Keypair.fromSecretKey(
             Uint8Array.from(Buffer.from(sender_priv_key,'hex'))
         );
@@ -61,8 +62,8 @@ export class Sol{
         );
         //TODO: should add await here 
         sendAndConfirmTransaction(connection, transaction, [fromKeypair]);
-
-      }
+        
+    }
 
 
 
