@@ -31,9 +31,11 @@
     "@maticnetwork/maticjs-web3": "^1.0.4",
     "@solana/web3.js": "^1.76.0",
     "@truffle/hdwallet-provider": "^2.1.11",
+    "@types/crypto-js": "^4.1.1",
     "@types/node": "^20.1.0",
     "bip39": "^3.1.0",
     "casper-js-sdk": "^2.12.1",
+    "crypto-js": "^4.1.1",
     "esm": "^3.2.25",
     "ethers": "^5.7.1",
     "jest": "^29.5.0",
@@ -41,6 +43,7 @@
     "truffle-hdwallet-provider": "^1.0.17",
     "ts-jest": "^29.1.0",
     "ts-mocha": "^10.0.0",
+    "twofish-ts": "^1.0.0",
     "typescript": "^5.0.4"
   },
   "files": [
@@ -64,7 +67,8 @@
     "@types/mocha": "^10.0.1",
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
-    "ts-node": "^9.1.1"
+    "ts-node": "^9.1.1",
+    "twofish": "^1.0.1"
   },
   "mocha": {
     "require": [
