@@ -1,5 +1,5 @@
 
-import { ethers } from "ethers"
+import { ethers, providers } from "ethers"
 import { POSClient, use } from "@maticnetwork/maticjs"
 // import HDWalletProvider from "@truffle/hdwallet-provider"
 // var HDWalletProvider = require("truffle-hdwallet-provider");
@@ -26,7 +26,7 @@ export class Polygon{
         const dic_net = {
             name: 'Mumbai Testnet',
             chainId: 80001,
-            _defaultProvider: (providers) => new providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/')
+            _defaultProvider: () => new providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/')
           };
           let provider =  ethers.providers.getDefaultProvider(dic_net)
         
@@ -72,7 +72,7 @@ export class Polygon{
         const dic_net = {
             name: 'Mumbai Testnet',
             chainId: 80001,
-            _defaultProvider: (providers) => new providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/')
+            _defaultProvider: () => new providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/')
           };
         
           let provider =  ethers.providers.getDefaultProvider(dic_net)
