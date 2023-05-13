@@ -1,7 +1,7 @@
 
 
 
-import  {Polygon} from '../../src/polygon/polygon_class';
+import  {Polygon} from '../src/polygon/polygon_class';
 
 
 
