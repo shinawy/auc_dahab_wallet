@@ -1,12 +1,12 @@
 {
   "name": "auc_dahab_wallet",
-  "version": "1.4.0",
+  "version": "1.5.1",
   "description": "This is a full-featured crypto-wallet created by AUC students that helps developers to interact with the wallet through the cli or node code in their apps",
   "main": "./src/index.ts",
   "typings": "lib/cjs/types",
   "scripts": {
     "clean": "rm -rf ./lib",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && npm run clean && npm run build:cjs",
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "jest": "jest --config=.jestconfig.json",

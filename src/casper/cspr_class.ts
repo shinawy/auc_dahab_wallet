@@ -19,8 +19,10 @@ export class Cspr{
         const client = new CasperClient(CONNECTION.NODE_ADDRESS);
         const edKeyPair =  client.newHdWallet(master_seed);
         
-        const privateKey = Buffer.from(edKeyPair.privateKey()).toString('hex');
-        const publicKey = Buffer.from(edKeyPair.publicKey()).toString('hex');
+        let edpriv: Buffer= edKeyPair.privateKey() as Buffer
+        let edpub: Buffer= edKeyPair.publicKey() as Buffer
+        const privateKey = Buffer.from(edpriv).toString('hex');
+        const publicKey = Buffer.from(edpub).toString('hex');
         
         
 
