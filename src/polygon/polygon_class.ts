@@ -1,7 +1,10 @@
 
 import { ethers } from "ethers"
 import { POSClient, use } from "@maticnetwork/maticjs"
-import HDWalletProvider from "@truffle/hdwallet-provider"
+// import HDWalletProvider from "@truffle/hdwallet-provider"
+// var HDWalletProvider = require("truffle-hdwallet-provider");
+var HDWalletProvider = require("@truffle/hdwallet-provider");
+
 import  { Web3ClientPlugin } from "@maticnetwork/maticjs-web3"
 import {Eth} from "../ethereum/eth_class"
 // const  ethers= require("ethers")  
@@ -39,22 +42,23 @@ export class Polygon{
             network: "testnet",
             version: "mumbai",
             parent: {
-            provider: new HDWalletProvider(
-                privateKey,
-                'https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'
-            ),
-            defaultConfig: {
-                from: publicKey
-            }
+                provider:  new HDWalletProvider({
+                    privateKeys:[privateKey],
+                    providerOrUrl: 'https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'
+            }),
+                defaultConfig: {
+                    from: publicKey
+                }
             },
             child: {
-            provider: new HDWalletProvider(
-                privateKey,
-                'https://rpc-mumbai.maticvigil.com'
-            ),
-            defaultConfig: {
-                from: publicKey
-            }
+                provider:  new HDWalletProvider({
+                    privateKeys:[privateKey],
+                    
+                    providerOrUrl:'https://rpc-mumbai.maticvigil.com'
+            }),
+                defaultConfig: {
+                    from: publicKey
+                }
             }
         });
 

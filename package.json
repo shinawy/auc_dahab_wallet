@@ -13,7 +13,7 @@
     "prepack": "npm run build",
     "ts-mocha": "ts-mocha -p configs/tsconfig.base.json",
     "mocha": "mocha",
-    "test": "export NODE_OPTIONS=--openssl-legacy-provider && jest --config=.jestconfig.json",
+    "test": "export NODE_OPTIONS=--openssl-legacy-provider && jest --detectOpenHandles --config=.jestconfig.json",
     "tsjest": "ts-jest config:migrate .jestconfig.json"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "ethers": "^5.7.1",
     "jest": "^29.5.0",
     "npm-packlist": "^7.0.4",
+    "truffle-hdwallet-provider": "^1.0.17",
     "ts-jest": "^29.1.0",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.0.4"
