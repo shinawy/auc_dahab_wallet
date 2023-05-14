@@ -1,5 +1,5 @@
 {
-    "roots": ["tests"],
+    "roots": ["tests/master_wallet"],
     "preset": "ts-jest", 
     "testTimeout": 10000000
 }

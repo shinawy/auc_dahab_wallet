@@ -22,7 +22,7 @@ let cspr_cls= new Cspr();
 let polygon_cls= new Polygon();
 
 
-export class master_wallet{
+export class MasterWallet{
 
     constructor(){
         
@@ -38,7 +38,7 @@ export class master_wallet{
     }
 
     
-    async create_master_wallet (password: string, return_encrypted_keys: boolean, master_mnemonic: string)  {
+    async create_master_wallet (master_mnemonic: string, password: string, return_encrypted_keys: boolean)  {
         let master_seed= await create_seed(master_mnemonic);
         let [eth_priv, eth_pub]=  eth_cls.create_wallet(master_mnemonic)
         let [sol_priv, sol_pub]=  sol_cls.create_wallet(master_seed)
@@ -66,7 +66,7 @@ export class master_wallet{
         }
 
         else {
-            
+
             let length= 192;
             let eth_encrypted= await store_keypair(abbreviations_map["ethereum"],eth_pub,eth_priv,length,password)
             let sol_encrypted= await store_keypair(abbreviations_map["solana"],sol_pub,sol_priv,length,password)
@@ -90,12 +90,17 @@ export class master_wallet{
     }
 
     async get_master_balance(info_obj: Object) {
+
+        let eth_pubkey= info_obj[abbreviations_map["ethereum"]][`${abbreviations_map["ethereum"]}_publicKey`]
+        let sol_pubkey= info_obj[abbreviations_map["solana"]][`${abbreviations_map["solana"]}_publicKey`]
+        let cspr_pubkey= info_obj[abbreviations_map["casper"]][`${abbreviations_map["casper"]}_publicKey`]
+        let polygon_pubkey= info_obj[abbreviations_map["polygon"]][`${abbreviations_map["polygon"]}_publicKey`]
         let balance_info_obj = {
 
-            [`${abbreviations_map["ethereum"]}`]: eth_cls.get_balance(info_obj[abbreviations_map["ethereum"]]),
-            [`${abbreviations_map["solana"]}`]: sol_cls.get_balance(info_obj[abbreviations_map["solana"]]),
-            [`${abbreviations_map["casper"]}`]: cspr_cls.get_balance(info_obj[abbreviations_map["casper"]]),
-            [`${abbreviations_map["polygon"]}`]: polygon_cls.getPolygonMaticBalance(info_obj[abbreviations_map["polygon"]]),
+            [`${abbreviations_map["ethereum"]}`]: await eth_cls.get_balance(eth_pubkey),
+            [`${abbreviations_map["solana"]}`]: await sol_cls.get_balance(sol_pubkey),
+            [`${abbreviations_map["casper"]}`]: await cspr_cls.get_balance(cspr_pubkey),
+            [`${abbreviations_map["polygon"]}`]: await polygon_cls.getPolygonMaticBalance(polygon_pubkey),
 
         }
           return balance_info_obj
@@ -121,6 +126,8 @@ export class master_wallet{
 
         return keys_info_obj
       }
+
+      
 
 
 
