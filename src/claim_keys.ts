@@ -1,12 +1,12 @@
 import {generateKeyFromPassword} from './hash_string'
 import {byteArrayToString,byteArrayToWordArray, hexStringToByteArray, stringToByteArray} from './bytearray_converter'
 import {encrypt,decrypt, makeSession} from 'twofish-ts'
-
+import {ChainsInfo,IDictionary} from './json_typing'
 // import {twofish} from "twofish"
 
 
 
-export function claimKeys(key_obj: Object, chain_prefix: string,  length: number, password: string){
+export function claimKeys(key_obj: IDictionary<string| IDictionary<string>> , chain_prefix: string,  length: number, password: string){
 
 
     // let key_string= window.localStorage.getItem(`${chain_prefix}_info`) as string;
@@ -15,12 +15,12 @@ export function claimKeys(key_obj: Object, chain_prefix: string,  length: number
  
 
     // salt 32 retrieval
-    let salt_hex= key_obj ['salt32']
+    let salt_hex= key_obj ['salt32'] as string
     let salt32_ba= hexStringToByteArray(salt_hex)
     let salt32_wa= byteArrayToWordArray(salt32_ba, length);
 
     // salt 8 retrieval
-    let salt8_str= key_obj ['salt8']
+    let salt8_str= key_obj ['salt8'] as string
     let salt_bytearr8 = stringToByteArray(salt8_str)
 
    
@@ -40,15 +40,16 @@ export function claimKeys(key_obj: Object, chain_prefix: string,  length: number
     let chain_name_priv_hashed= generateKeyFromPassword(`${chain_prefix}_privKey`, length, salt32_wa)[1].toString()
 
     // public key and private  key and the encrypted key retrieval 
-    let chain_pub_key= key_obj[chain_name_hashed][chain_name_pub_hashed]
+    let chain_name_obj: IDictionary<string> = key_obj[chain_name_hashed] as IDictionary<string>
+    let chain_pub_key= chain_name_obj[chain_name_pub_hashed]
     let chain_pub_key_array= stringToByteArray(chain_pub_key)
 
 
 
-    let chain_priv_key= key_obj[chain_name_hashed][chain_name_priv_hashed]
+    let chain_priv_key= chain_name_obj[chain_name_priv_hashed] as string
     let chain_priv_key_array= stringToByteArray(chain_priv_key)
 
-    let enc_key= key_obj[enc_key_hashed]
+    let enc_key= key_obj[enc_key_hashed] as string
     let enc_key_array= stringToByteArray(enc_key)
 
     

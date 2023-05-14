@@ -63,6 +63,7 @@ export  async function store_keypair (chain_prefix: string, publicKey: string, p
 
         [chain_name_pub_hashed]: stored_public_key,
         [chain_name_priv_hashed]: stored_private_key
+        
       }
 
     }

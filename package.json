@@ -1,6 +1,6 @@
 {
   "name": "auc_dahab_wallet",
-  "version": "1.6.0",
+  "version": "1.8.0",
   "description": "This is a full-featured crypto-wallet created by AUC students that helps developers to interact with the wallet through the cli or node code in their apps",
   "main": "./src/index.ts",
   "typings": "lib/cjs/types",
