@@ -6,6 +6,12 @@ This is the npm package for auc dahab wallet. It is a full-featured crypto-walle
 npm install --save auc_dahab_wallet
 ```
 
+# Run your script with --openssl-legacy-provider
+```
+node --openssl-legacy-provider test_npm_package.js
+```
+
+
 # APIS
 Please see the examples directory on Github to see how to use the library
 ## Using auc_dahab_wallet
