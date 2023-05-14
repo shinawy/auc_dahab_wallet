@@ -6,11 +6,11 @@ import {encrypt,decrypt, makeSession} from 'twofish-ts'
 
 
 
-export function claimKeys(chain_prefix, length, password){
+export function claimKeys(key_obj: Object, chain_prefix: string,  length: number, password: string){
 
 
-    let key_string= window.localStorage.getItem(`${chain_prefix}_info`) as string;
-    let key_obj= JSON.parse(key_string);  //this method should be called when we are dealing with a real file.
+    // let key_string= window.localStorage.getItem(`${chain_prefix}_info`) as string;
+    // let key_obj= JSON.parse(key_string);  //this method should be called when we are dealing with a real file.
     
  
 
@@ -54,7 +54,7 @@ export function claimKeys(chain_prefix, length, password){
     
     // decrypting the encrypted key to get the original key used for encrypting the private and public key
     var twF_session = makeSession(new Uint8Array(single_hash["words"]))
-    let key_encfile;
+    let key_encfile: Uint8Array= enc_key_array;
     decrypt(enc_key_array,0,key_encfile,0,twF_session)
     
     // twofish(salt_bytearr8); //it can take the seed or let it generate random one
@@ -62,14 +62,14 @@ export function claimKeys(chain_prefix, length, password){
     // decrypting the encrypted public key and private key using the obtained key 
 
     var twF_session2 = makeSession(key_encfile)
-    let cipher_pubkey_dec;
+    let cipher_pubkey_dec: Uint8Array= chain_pub_key_array;
     decrypt(chain_pub_key_array,0,cipher_pubkey_dec,0,twF_session2)
 
 
     let public_key= byteArrayToString(new Uint8Array (cipher_pubkey_dec)).replace(/\x00/g,'')
 
 
-    let cipher_privkey_dec; 
+    let cipher_privkey_dec: Uint8Array= chain_priv_key_array; 
     decrypt(chain_priv_key_array,0, cipher_privkey_dec,0,twF_session2 );
     let private_key= byteArrayToString(new Uint8Array (cipher_privkey_dec)).replace(/\x00/g,'')
 

@@ -7,6 +7,7 @@ import {Polygon} from "../polygon/polygon_class"
 import {create_mnemonics} from "../create_mnemonic"
 import {create_seed} from "../create_seed"
 import {store_keypair} from "../store_keypair"
+import { claimKeys } from "../claim_keys"
 
 const abbreviations_map = {
     "casper": "CSPR",
@@ -27,15 +28,24 @@ export class master_wallet{
         
     }
 
-     async create_master_wallet (password: string, return_encrypted_keys: boolean)  {
-        let master_mnemonic= create_mnemonics()
+    create_master_mnemonic(){
+
+        return create_mnemonics();
+    }
+
+    async create_master_seed(mnemonic: string){
+        return await create_seed(mnemonic);
+    }
+
+    
+    async create_master_wallet (password: string, return_encrypted_keys: boolean, master_mnemonic: string)  {
         let master_seed= await create_seed(master_mnemonic);
         let [eth_priv, eth_pub]=  eth_cls.create_wallet(master_mnemonic)
         let [sol_priv, sol_pub]=  sol_cls.create_wallet(master_seed)
         let [cspr_priv, cspr_pub]=  await cspr_cls.create_wallet(master_seed)
         let [polygon_priv, polygon_pub]=  polygon_cls.create_wallet(master_mnemonic)
 
-        let info_obj;
+        let info_obj:Object;
         if (!return_encrypted_keys){
            info_obj = {
 
@@ -56,6 +66,7 @@ export class master_wallet{
         }
 
         else {
+            
             let length= 192;
             let eth_encrypted= await store_keypair(abbreviations_map["ethereum"],eth_pub,eth_priv,length,password)
             let sol_encrypted= await store_keypair(abbreviations_map["solana"],sol_pub,sol_priv,length,password)
@@ -77,26 +88,38 @@ export class master_wallet{
         return info_obj;
         
     }
-    async get_balance(publicKey: string) {
-        const provider = ethers.providers.getDefaultProvider("goerli")
-        const balance = await provider.getBalance(publicKey);
-    
-        return parseFloat(ethers.utils.formatEther(balance));
+
+    async get_master_balance(info_obj: Object) {
+        let balance_info_obj = {
+
+            [`${abbreviations_map["ethereum"]}`]: eth_cls.get_balance(info_obj[abbreviations_map["ethereum"]]),
+            [`${abbreviations_map["solana"]}`]: sol_cls.get_balance(info_obj[abbreviations_map["solana"]]),
+            [`${abbreviations_map["casper"]}`]: cspr_cls.get_balance(info_obj[abbreviations_map["casper"]]),
+            [`${abbreviations_map["polygon"]}`]: polygon_cls.getPolygonMaticBalance(info_obj[abbreviations_map["polygon"]]),
+
+        }
+          return balance_info_obj
+
     }
     
-    async  send_transaction(sender_priv_key: string, receiver_pub_key: string, amount: string) {
-        let provider = ethers.providers.getDefaultProvider("goerli")
-        let walletPrivKey = new ethers.Wallet(sender_priv_key)
-      
-        let tx = {
-          to: receiver_pub_key,
-          value: ethers.utils.parseEther(amount)
+    async  claim_master_keys(info_obj: Object, password: string) {
+        let length= 192
+        let dec_eth= claimKeys(info_obj[abbreviations_map["ethereum"]],abbreviations_map["ethereum"], length,password)
+        let dec_sol= claimKeys(info_obj[abbreviations_map["solana"]],abbreviations_map["solana"], length,password)
+        let dec_cspr= claimKeys(info_obj[abbreviations_map["casper"]],abbreviations_map["casper"], length,password)
+        let dec_polygon= claimKeys(info_obj[abbreviations_map["polygon"]],abbreviations_map["polygon"], length,password)
+    
+        let keys_info_obj = {
+
+            [`${abbreviations_map["ethereum"]}`]: dec_eth,
+            [`${abbreviations_map["solana"]}`]: dec_sol,
+            [`${abbreviations_map["casper"]}`]: dec_cspr,
+            [`${abbreviations_map["polygon"]}`]: dec_polygon,
+
         }
-      
-        const wallet = walletPrivKey.connect(provider)
-        await walletPrivKey.signTransaction(tx)
-        let result = await wallet.sendTransaction(tx)
-        return result
+
+
+        return keys_info_obj
       }
 
 

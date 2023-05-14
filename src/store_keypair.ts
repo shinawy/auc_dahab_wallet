@@ -28,11 +28,11 @@ export  async function store_keypair (chain_prefix: string, publicKey: string, p
 
     let key_encfile = new Uint8Array(lib.WordArray.random(length)["words"]);    // this is k1 the one we will use to encrypt the file content
     var twF_session = makeSession(key_encfile); 
-    let cipher_private_key;
+    let cipher_private_key: Uint8Array= privateKeyArray;;
     encrypt(privateKeyArray,0,cipher_private_key,0,twF_session)
     let stored_private_key = byteArrayToString(new Uint8Array(cipher_private_key))
     
-    let cipher_public_key;
+    let cipher_public_key: Uint8Array= publicKeyArray;
     encrypt(publicKeyArray,0,cipher_public_key,0,twF_session)
     let stored_public_key = byteArrayToString(new Uint8Array(cipher_public_key))
 
@@ -40,7 +40,7 @@ export  async function store_keypair (chain_prefix: string, publicKey: string, p
 
 
     let twF_encKey_session= makeSession(new Uint8Array(single_hash["words"]))
-    let enc_key_encrypted;
+    let enc_key_encrypted: Uint8Array= key_encfile;
     encrypt(key_encfile,0,enc_key_encrypted,0,twF_encKey_session)
 
 
